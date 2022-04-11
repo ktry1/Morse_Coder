@@ -1,0 +1,82 @@
+{% extends "bootstrap/base.html" %}
+
+
+{%block title%}Morse coder{%endblock%}
+{%block head%}
+{{super()}}
+
+<link rel="icon" type="image/x-icon" href={{url_for("static", filename="favicon.ico")}}>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+ body {
+  background-image: url("{{url_for("static",filename="white-concrete-wall.jpg")}}");
+    background-size: cover;}
+</style>
+{%endblock%}
+
+{%block content%}
+<audio id="audio">
+  <source src={{url_for("static", filename="typewriter-1.mp3")}} type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+<audio id="audio2">
+  <source src={{url_for("static", filename="switch-15.mp3")}} type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+<audio id="audio3">
+  <source src={{url_for("static", filename="rotary-phone-1.mp3")}} type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+
+<h1 class="text-center" style="font-family: 'Special Elite', cursive;font-size:4em">Morse Coder</h1>
+ <div class="container">
+<form  action={{url_for("home")}}  method="post" onSubmit="GoFunc()" id="Go"  >
+    <div class="form-group">
+
+    <textarea style="font-size: 1.5em; font-family: 'Special Elite', cursive;" class="form-control" id="body" name="input" rows="20" placeholder="Write your text here"></textarea>
+        <div class="container-flex .align-items-center" >
+        <label for="cipher" class="btn btn-success" style="font-family: 'Special Elite', cursive; font-size:1.5em;width:50%;padding:1% 0%;background-color:#E5DF88;color:black; border: 2px outset black;display:block-inline; margin:1% 0% 0% 0%">Cipher
+      <input type="radio"  id="cipher" name="choice" value="Cipher"
+         checked>
+  </label><label for="decipher" class="btn btn-danger" style=" background-color:#A37EBA;color:black;font-family: 'Special Elite', cursive; font-size:1.5em; width:50%;padding:1% 0%; border: 2px outset black;display:block-inline; margin:1% 0% 0% 0%">Decipher
+  <input type="radio" id="decipher" name="choice" value="Decipher">
+  </label>
+</div>
+        <button type="button" onclick="GoFunc()" style="font-family: 'Special Elite', cursive; font-size:1.5em;margin:1% 0%; border: 2px outset black;background-color:#1DA1F2;color:black;" class="btn btn-primary btn-lg btn-block">Let's go</button>
+    </div>
+
+</form>
+
+
+ </div>
+<div class="footer-copyright text-center py-3"><p style="font-weight: bold;">Made by Kyrylo Troiak, 2022</p></div>
+<script>
+    document.addEventListener('keydown', function(){
+    Audio=document.getElementById("audio")
+    Audio.play();
+});
+Option1=document.getElementById("cipher")
+Option2=document.getElementById("decipher")
+Option1.addEventListener('click', function(){
+    Audio=document.getElementById("audio2")
+    Audio.play();
+});
+Option2.addEventListener('click', function(){
+    Audio=document.getElementById("audio2")
+    Audio.play();
+});
+
+
+
+function GoFunc(){
+    Audio=document.getElementById("audio3");
+    Audio.play();
+    Audio.addEventListener("ended", function(){
+    document.getElementById("Go").submit();
+    });
+
+};
+</script>
+{%endblock%}
+
+

@@ -1,0 +1,51 @@
+{% extends "bootstrap/base.html" %}
+
+{%block title%}Morse coder{%endblock%}
+{%block head%}
+{{super()}}
+
+<link rel="icon" type="image/x-icon" href={{url_for("static", filename="favicon.ico")}}>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+ body {
+  background-image: url({{url_for("static",filename="white-concrete-wall.jpg")}});
+    background-size: cover;}
+</style>
+{%endblock%}
+
+{%block content%}
+<a id="Link" href={{url_for("home")}}></a>
+<audio id="audio">
+  <source src={{url_for("static", filename="rotary-phone-2-nr8.mp3")}} type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+<audio id="audio2">
+  <source src={{url_for("static", filename="cassette-in-close-1.mp3")}} type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+<audio id="audio3">
+  <source src={{url_for("static", filename="typewriter-1.mp3")}} type="audio/mpeg"> Your browser does not support the audio element.
+</audio>
+
+<h1 class="text-center" style="font-family: 'Special Elite', cursive;font-size:4em"> Morse Coder Output</h1>
+<div class="container">
+<form>
+    <div class="form-group">
+<textarea style="font-family: 'Special Elite', cursive; font-size: 1.5em" class="form-control" id="output" name="output"
+          rows="15" cols="70">
+{{answer}}
+</textarea>
+
+        <a href="#" style="font-family: 'Special Elite', cursive; margin-top:1%;border: 2px outset black;background-color:#F6E79C;color:black;" id="Copy" class="btn btn-success btn-lg btn-block ">Copy to clipboard</a>
+     <button type="button" id="back_button" style="font-family: 'Special Elite', cursive;margin-top:1%;border: 2px outset black;background-color:#1DA1F2;color:black;" onclick="GoFunc()" class="btn btn-primary btn-lg btn-block ">Back</button>
+    </div>
+</form>
+    </div>
+
+<div class="footer-copyright text-center py-3"><p style="font-weight: bold;">Made by Kyrylo Troiak, 2022</p></div>
+<script src={{url_for("static" , filename="Scripts/script.js")}} >
+
+</script>
+
+{%endblock%}
